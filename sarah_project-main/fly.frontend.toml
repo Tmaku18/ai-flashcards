@@ -1,0 +1,17 @@
+app = "sarah-gsu-flashcardai-frontend"  # This will be replaced by the deploy script
+primary_region = "sjc"  # Silicon Valley - change to your preferred region
+
+[build]
+  dockerfile = "Dockerfile.frontend-only"
+
+[env]
+  PORT = "3000"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]

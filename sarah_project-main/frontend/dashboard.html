@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Flashcard App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            background-color: #0284c7;
+            color: white;
+            padding: 1.5rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .sidebar {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        .main {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        .nav-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .nav-item:hover, .nav-item.active {
+            background-color: #e5e5e5;
+        }
+        .nav-item.active {
+            font-weight: 600;
+            color: #0284c7;
+        }
+        .card {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background-color: #f9f9f9;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #0284c7;
+        }
+        .button {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .button:hover {
+            background-color: #0369a1;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #bfdbfe;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0284c7;
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        .recent-activity {
+            margin-top: 2rem;
+        }
+        .activity-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        .activity-time {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Flashcard App Dashboard</h1>
+                <a href="/" class="button">Back to Home</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <div class="sidebar">
+                <h2>Navigation</h2>
+                <nav>
+                    <a href="/dashboard" class="nav-item active">Dashboard</a>
+                    <a href="/dashboard/sets" class="nav-item">Flashcard Sets</a>
+                    <a href="/dashboard/study" class="nav-item">Study</a>
+                    <a href="/dashboard/upload" class="nav-item">Upload Document</a>
+                    <a href="/dashboard/stats" class="nav-item">Statistics</a>
+                    <a href="/dashboard/settings" class="nav-item">Settings</a>
+                    <a href="/api/docs" class="nav-item">API Documentation</a>
+                </nav>
+            </div>
+            
+            <div class="main">
+                <h2>Dashboard</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Flashcard Sets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">120</div>
+                        <div class="stat-label">Total Cards</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">45</div>
+                        <div class="stat-label">Cards Mastered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">75%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Quick Actions</h3>
+                    <p>What would you like to do today?</p>
+                    <a href="/dashboard/study" class="button">Start Studying</a>
+                    <a href="/dashboard/upload" class="button" style="margin-left: 1rem;">Upload Document</a>
+                </div>
+                
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    
+                    <div class="activity-item">
+                        <div>Studied "Biology Basics" set</div>
+                        <div class="activity-time">Today, 2:30 PM</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div>Created new set "Chemistry Formulas"</div>
+                        <div class="activity-time">Yesterday, 10:15 AM</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div>Uploaded document "Physics Notes.pdf"</div>
+                        <div class="activity-time">2 days ago</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; color: #64748b; font-style: italic;">
+                    Note: This is a static placeholder for the dashboard. In a real application, this would be a dynamic page with real data.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

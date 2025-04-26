@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app:/app/app
+      - ./uploads:/app/uploads
+      - ./flashcard_app.db:/app/flashcard_app.db
+    environment:
+      - DEBUG=True
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8080
+      - HOSTNAME=0.0.0.0
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Simple SQLite database browser
+  db-explorer:
+    image: coleifer/sqlite-web
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./flashcard_app.db:/data/flashcard_app.db
+    environment:
+      - SQLITE_DATABASE=flashcard_app.db
+    restart: unless-stopped

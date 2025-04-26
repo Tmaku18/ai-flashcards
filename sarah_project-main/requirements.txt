@@ -1,0 +1,33 @@
+# API and Web Framework
+fastapi
+uvicorn
+
+# Database
+sqlalchemy
+
+# Data Validation
+pydantic
+
+# Authentication
+python-jose
+passlib
+bcrypt
+
+# File Handling
+python-multipart
+PyPDF2
+python-docx
+
+# AI Integration
+google-generativeai
+pydantic
+pydantic[email]
+
+# Configuration
+python-dotenv
+
+# Testing
+pytest
+pytest-cov
+httpx
+asyncio
